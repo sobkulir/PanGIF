@@ -1,0 +1,61 @@
+﻿<UserControl
+    x:Class="PanGIF.Controls.KeyFrameSlider"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:PanGIF.Controls"
+    xmlns:converters="clr-namespace:PanGIF.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:LeftMarginToMarginConverter x:Key="LeftMarginToMarginConverter" />
+    </UserControl.Resources>
+
+    <StackPanel
+        Margin="5"
+        DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+        Orientation="Vertical">
+
+        <controls:UniformRects
+            Width="{Binding TrackWidth}"
+            Height="15"
+            Margin="-10,0,0,0"
+            CurGIF="{Binding CurGIF}"
+            IsBig="True"
+            Value="{Binding Value}" />
+        <controls:UniformRects
+            Width="{Binding TrackWidth}"
+            Height="8"
+            Margin="-2,0,0,4"
+            CurGIF="{Binding CurGIF}"
+            IsBig="False" />
+
+        <Grid
+            Height="25"
+            Background="Transparent"
+            PointerPressed="TrackTappedPressed"
+            PointerReleased="TrackTappedReleased">
+            <Grid
+                Name="Track"
+                Height="4"
+                Margin="4,0,4,4"
+                VerticalAlignment="Bottom">
+                <Border BorderBrush="LightSlateGray" BorderThickness="2" />
+            </Grid>
+            <Canvas VerticalAlignment="Top">
+                <Polygon
+                    Width="8"
+                    Height="25"
+                    Margin="{Binding ThumbOffset, Converter={StaticResource LeftMarginToMarginConverter}}"
+                    HorizontalAlignment="Left"
+                    Fill="DarkKhaki"
+                    PointerMoved="ThumbMoved"
+                    PointerPressed="ThumbPressed"
+                    PointerReleased="ThumbReleased"
+                    Points="0,10 5,0 10,10 10,25 0,25" />
+            </Canvas>
+        </Grid>
+    </StackPanel>
+</UserControl>

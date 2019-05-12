@@ -1,0 +1,125 @@
+﻿<UserControl
+    x:Class="PanGIF.Controls.ImageCrop"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:PanGIF.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <VisualBrush
+            x:Key="TransparentBackgroundBrush"
+            DestinationRect="0,0,30,30"
+            TileMode="Tile">
+            <VisualBrush.Visual>
+                <Grid
+                    Width="30"
+                    Height="30"
+                    Background="White"
+                    ColumnDefinitions="15,15"
+                    RowDefinitions="15,15">
+                    <Rectangle
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Width="15"
+                        Height="15"
+                        Fill="#d7d7d7" />
+                    <Rectangle
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Width="15"
+                        Height="15"
+                        Fill="#d7d7d7" />
+                </Grid>
+            </VisualBrush.Visual>
+        </VisualBrush>
+    </UserControl.Resources>
+
+    <ScrollViewer
+        Background="#282828"
+        DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+        HorizontalScrollBarVisibility="Auto"
+        VerticalScrollBarVisibility="Auto">
+        <Grid
+            Margin="50"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="{StaticResource TransparentBackgroundBrush}">
+            <controls:ScalableImage Image="{Binding Image}" Scale="{Binding Scale}" />
+
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <controls:Highlighter Region="{Binding ScaledCrop}" />
+                <Grid
+                    Width="{Binding CropWidth}"
+                    Height="{Binding CropHeight}"
+                    Margin="{Binding CropMargin}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    PointerMoved="CropMoved"
+                    PointerPressed="CropPressed"
+                    PointerReleased="CropReleased">
+                    <Grid.Styles>
+                        <Style Selector="Polygon">
+                            <Setter Property="Fill" Value="White" />
+                            <Setter Property="Stroke" Value="Black" />
+                            <Setter Property="StrokeThickness" Value="1" />
+                        </Style>
+                    </Grid.Styles>
+                    <Border
+                        Margin="-4"
+                        BorderBrush="White"
+                        BorderThickness="4"
+                        Opacity="0.5" />
+                    <Polygon
+                        Name="TopLeft"
+                        Margin="-6,-6,0,0"
+                        Points="0,0 16,0 16,8 8,8 8,16 0,16" />
+                    <Polygon
+                        Name="TopRight"
+                        Margin="0,-6,-6,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Points="0,0 16,0 16,16 8,16 8,8 0,8" />
+                    <Polygon
+                        Name="BottomRight"
+                        Margin="0,0,-6,-6"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Points="16,16 0,16 0,8 8,8 8,0 16,0" />
+                    <Polygon
+                        Name="BottomLeft"
+                        Margin="-6,0,0,-6"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom"
+                        Points="16,16 0,16 0,0 8,0 8,8 16,8" />
+                    <Polygon
+                        Name="Top"
+                        Margin="0,-6,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Points="0,0 16,0 16,8 0,8" />
+                    <Polygon
+                        Name="Right"
+                        Margin="0,0,-6,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Points="0,0 8,0 8,16 0,16 " />
+                    <Polygon
+                        Name="Bottom"
+                        Margin="0,0,0,-6"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Points="0,0 16,0 16,8 0,8" />
+                    <Polygon
+                        Name="Left"
+                        Margin="-6,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Points="0,0 8,0 8,16 0,16 " />
+                </Grid>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

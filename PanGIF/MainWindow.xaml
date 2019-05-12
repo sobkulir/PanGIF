@@ -1,0 +1,139 @@
+﻿<Window
+    x:Class="PanGIF.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:PanGIF.Controls"
+    xmlns:converters="clr-namespace:PanGIF.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:PanGIF.ViewModels"
+    Title="PanGIF"
+    MinWidth="400"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <viewmodels:MainWindowViewModel />
+    </Window.DataContext>
+
+    <Window.Resources>
+        <converters:MinusOneConverter x:Key="MinusOneConverter" />
+    </Window.Resources>
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Click="OnOpenFile" Header="Open..." />
+                <MenuItem Click="OnSaveFile" Header="Export GIF..." />
+            </MenuItem>
+        </Menu>
+
+        <Grid
+            Margin="10,5,10,10"
+            ColumnDefinitions="*,Auto"
+            DockPanel.Dock="Top"
+            RowDefinitions="*">
+            <controls:KeyFrameSlider
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="10,0,10,0"
+                HorizontalAlignment="Stretch"
+                CurGIF="{Binding CurGIF}"
+                DockPanel.Dock="Top"
+                Value="{Binding SelectedFrameIndex}" />
+
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="0,0,0,10"
+                VerticalAlignment="Bottom"
+                Orientation="Horizontal">
+                <NumericUpDown
+                    Width="55"
+                    Padding="2"
+                    ClipValueToMinMax="True"
+                    Increment="1"
+                    Maximum="{Binding CurGIF.FrameCount, Converter={StaticResource MinusOneConverter}}"
+                    Minimum="0"
+                    Value="{Binding SelectedFrameIndex}" />
+                <Button Click="OnDeleteKeyframe" IsEnabled="{Binding HasCrop}">Delete Keyframe</Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid
+            Background="#404040"
+            ColumnDefinitions="*,Auto"
+            DockPanel.Dock="Bottom"
+            RowDefinitions="*">
+            <Grid.Styles>
+                <Style Selector="NumericUpDown">
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="FontSize" Value="11" />
+                    <Setter Property="Height" Value="25" />
+                    <Setter Property="ClipValueToMinMax" Value="True" />
+                </Style>
+                <Style Selector="NumericUpDown,TextBlock,CheckBox">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="4" />
+                </Style>
+            </Grid.Styles>
+
+            <Grid Grid.Row="0" Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <NumericUpDown
+                        MinWidth="50"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FormatString="P0"
+                        Increment="0.3"
+                        Minimum="0.01"
+                        Value="{Binding Scale}" />
+                    <TextBlock
+                        Margin="15,0,0,0"
+                        VerticalAlignment="Center"
+                        Foreground="White"
+                        Text="{Binding SelectedFrameCrop}" />
+                </StackPanel>
+            </Grid>
+
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="1"
+                Orientation="Horizontal">
+                <TextBlock Foreground="White">W:</TextBlock>
+                <NumericUpDown
+                    Maximum="3000"
+                    Minimum="1"
+                    Value="{Binding TargetWidth}" />
+                <TextBlock Foreground="White">H:</TextBlock>
+                <NumericUpDown
+                    Maximum="3000"
+                    Minimum="1"
+                    Value="{Binding TargetHeight}" />
+                <TextBlock Foreground="White">Keep aspect ratio:</TextBlock>
+                <CheckBox
+                    Margin="4,4,15,4"
+                    Background="White"
+                    IsChecked="{Binding KeepAspectRatio}" />
+            </StackPanel>
+        </Grid>
+
+        <Grid>
+            <ProgressBar
+                Width="100"
+                Height="30"
+                IsVisible="{Binding CurProgress.IsActive}"
+                Maximum="{Binding CurProgress.Total}"
+                Minimum="1"
+                Value="{Binding CurProgress.Value}" />
+            <controls:ImageCrop
+                Crop="{Binding SelectedFrameCrop}"
+                Image="{Binding SelectedFrameBitmap}"
+                IsVisible="{Binding !CurProgress.IsActive}"
+                KeepAspectRatio="{Binding KeepAspectRatio}"
+                RatioHeight="{Binding TargetHeight}"
+                RatioWidth="{Binding TargetWidth}"
+                Scale="{Binding Scale}" />
+        </Grid>
+    </DockPanel>
+</Window>
