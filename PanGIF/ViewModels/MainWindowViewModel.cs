@@ -21,8 +21,7 @@ namespace PanGIF.ViewModels
 
         public MainWindowViewModel()
         {
-            CurProgress = new LoadSaveProgress();
-            CurProgress.IsActive = false;
+            CurProgress = new LoadSaveProgress(true, 0, 1);
             SelectedFrameIndex = 0;
             Scale = 1F;
         }

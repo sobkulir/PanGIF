@@ -43,9 +43,11 @@
                 }
             }
         }
-        public LoadSaveProgress()
+        public LoadSaveProgress(bool isActive, int value, int total)
         {
-
+            IsActive = isActive;
+            Value = value;
+            Total = total;
         }
     }
 }

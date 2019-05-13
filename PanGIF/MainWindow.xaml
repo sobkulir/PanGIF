@@ -124,7 +124,7 @@
                 Height="30"
                 IsVisible="{Binding CurProgress.IsActive}"
                 Maximum="{Binding CurProgress.Total}"
-                Minimum="1"
+                Minimum="0"
                 Value="{Binding CurProgress.Value}" />
             <controls:ImageCrop
                 Crop="{Binding SelectedFrameCrop}"
