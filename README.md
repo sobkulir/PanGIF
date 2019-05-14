@@ -20,6 +20,10 @@ A desktop app for panning and zooming GIF images. You simply define keyframes as
 
 [PanGIF-0.9-win-x86](https://sourceforge.net/projects/pangif/files/)
 
+*MacOS (TBA)*
+
+*Linux (TBA)*
+
 ## Usage
 ### Loading GIF
 Firstly, you should navigate to `File -> Open...` and select a GIF you'd like to pan/zoom. After the GIF loads you'll see its fully selected first frame. You can now start editting -- pick different frames using a slider above the current frame and select different portions of them using selection handles.
