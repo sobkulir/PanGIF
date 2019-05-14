@@ -11,11 +11,12 @@ A desktop app for panning and zooming GIF images. You simply define keyframes as
 ## Features
 * Zooming
 * Panning
+* Support for semi-transparent frames
 * Defining arbitrary target width and height
 * Keeping aspect ratio of target width and height
 * Showing computed transition selections
 
-## Current releases
+## Current release
 [PanGIF-0.9-win-x64](https://sourceforge.net/projects/pangif/files/)
 
 [PanGIF-0.9-win-x86](https://sourceforge.net/projects/pangif/files/)
