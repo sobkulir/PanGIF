@@ -22,35 +22,35 @@ A desktop app for panning and zooming GIF images. You simply define keyframes as
 
 ## Usage
 ### Loading GIF
-Firstly, you should navigate to `File -> Open...` and select a GIF you'd like to pan/zoom. After the GIF loads you'll see its fully selected first frame. You can now start editting -- pick different frames using a slider above the current frame and select different portions of them using the selection handles.
+Firstly, you should navigate to `File -> Open...` and select a GIF you'd like to pan/zoom. After the GIF loads you'll see its fully selected first frame. You can now start editting -- pick different frames using a slider above the current frame and select different portions of them using selection handles.
 
 ### Bottom panel
 #### Aspect ratio
-You can enable keeping the aspect ratio of the target size by ticking a checkbox in the bottom right corner.
+You can enable keeping the aspect ratio of target size by ticking a checkbox in the bottom right corner.
 
 #### Target size
-To define the resulting size you can use the `W(idth):` and `H(eight):` boxes in the bottom right corner. By default the dimensions of the original GIF are used. In general it's good to keep this value equal to the size of your biggest keyframe, i.e. keyframe with the biggest selection.
+To define resulting size you can use `W(idth):` and `H(eight):` input boxes in the bottom right corner. By default dimensions of the original GIF are used. In general it's good to keep this value equal to the size of your biggest keyframe, i.e. keyframe with the biggest selection.
 
 #### Selection size
-Size of the current selection can be found in the bottom left corner, right next to the zoom factor. There are 4 numbers `(X, Y, W, H)` where `X, Y` represents the location of the upper left corner of the selection relative to the upper left corner of the original image. `W, H` are width and height of the selection.
+Size of the current selection can be found in the bottom left corner, right next to zoom factor. There are 4 numbers `(X, Y, W, H)` where `X, Y` represents location of the upper left corner of the selection relative to the upper left corner of the original image. `W, H` are width and height of the selection.
 
 #### Zoom factor
-If the GIF is too small or too big you can zoom in or zoom out using the zoom factor found in the bottom left corner.
+If the GIF is too small or too big you can zoom in or zoom out using zoom factor found in the bottom left corner.
 
 ### Top panel
-The top panel contains the main slider used for choosing a frame to edit. When you change selection of the current frame for the first time you turned it into a keyframe. Keyframes are marked with orange rectangles above the slider.
+Top panel contains main slider used for choosing a frame to edit. When you change selection of the current frame for the first time you turned it into a keyframe. Keyframes are marked with orange rectangles above the slider.
 
-*Tip: If you want to quickly switch current frame to a keyframe you can just click on its orange rectangle.*
+*Tip: If you want to quickly switch current frame to a keyframe you can click on its orange rectangle.*
 
-*Tip: If you want to pick a frame based on its number you can do so using the input box to the right of the main slider.* 
+*Tip: If you want to pick a frame based on its number you can do so using an input box to the right of the main slider.* 
 
-To delete the current frame selection you should use the `Delete Keyframe` button found on the very right of the top panel.
+To delete the current frame selection you should use a `Delete Keyframe` button found on the very right of the top panel.
 
 ### Saving GIF
 To export your work go to `File -> Export GIF...` and choose location of the output GIF.
 
 ## What's missing
-* PanGIF currently doesn't support showing a preview of editted GIF.
+* Showing a preview of editted GIF.
 * Keyboard/mouse shortcuts
 * Undo/Redo
 * Saving progress
