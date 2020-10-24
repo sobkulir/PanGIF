@@ -1,12 +1,12 @@
 # PanGIF
 A desktop app for panning and zooming GIF images. You simply define keyframes as rectangular selections of the original frames and PanGIF creates linear transitions between these keyframes. The app can be run on all major OSs: Windows, MacOS, Linux. PanGIF uses [Avalonia](https://github.com/AvaloniaUI/Avalonia) for the GUI and [Magick.NET](https://github.com/dlemstra/Magick.NET) for manipulating GIFs.
 
-![PanGIF UI with a loaded image.](https://gdurl.com/LNVg)
+![PanGIF UI with a loaded image.](https://raw.githubusercontent.com/sobkulir/PanGIF/master/readme_images/app.png?raw=true)
 
 ## Example
 | Original | Transformed |
 |---|---|
-| ![Original GIF](https://gdurl.com/ywG7) | ![Transformed GIF](https://gdurl.com/Ri4R) |
+| ![Original GIF](https://raw.githubusercontent.com/sobkulir/PanGIF/master/readme_images/borat_orig.gif?raw=true) | ![Transformed GIF](https://raw.githubusercontent.com/sobkulir/PanGIF/master/readme_images/borat_after.gif?raw=true) |
 
 ## Features
 * Zooming
